@@ -1,0 +1,53 @@
+//  THIS SAMPLE APPLICATION AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
+//  OF ANY KIND BY CISCO, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED
+//  TO THE IMPLIED WARRANTIES OF MERCHANTABILITY FITNESS FOR A PARTICULAR
+//  PURPOSE, NONINFRINGEMENT, SATISFACTORY QUALITY OR ARISING FROM A COURSE OF
+//  DEALING, LAW, USAGE, OR TRADE PRACTICE. CISCO TAKES NO RESPONSIBILITY
+//  REGARDING ITS USAGE IN AN APPLICATION, AND IT IS PRESENTED ONLY AS AN
+//  EXAMPLE. THE SAMPLE CODE HAS NOT BEEN THOROUGHLY TESTED AND IS PROVIDED AS AN
+//  EXAMPLE ONLY, THEREFORE CISCO DOES NOT GUARANTEE OR MAKE ANY REPRESENTATIONS
+//  REGARDING ITS RELIABILITY, SERVICEABILITY, OR FUNCTION. IN NO EVENT DOES
+//  CISCO WARRANT THAT THE SOFTWARE IS ERROR FREE OR THAT CUSTOMER WILL BE ABLE
+//  TO OPERATE THE SOFTWARE WITHOUT PROBLEMS OR INTERRUPTIONS. NOR DOES CISCO
+//  WARRANT THAT THE SOFTWARE OR ANY EQUIPMENT ON WHICH THE SOFTWARE IS USED WILL
+//  BE FREE OF VULNERABILITY TO INTRUSION OR ATTACK. THIS SAMPLE APPLICATION IS
+//  NOT SUPPORTED BY CISCO IN ANY MANNER. CISCO DOES NOT ASSUME ANY LIABILITY
+//  ARISING FROM THE USE OF THE APPLICATION. FURTHERMORE, IN NO EVENT SHALL CISCO
+//  OR ITS SUPPLIERS BE LIABLE FOR ANY INCIDENTAL OR CONSEQUENTIAL DAMAGES, LOST
+//  PROFITS, OR LOST DATA, OR ANY OTHER INDIRECT DAMAGES EVEN IF CISCO OR ITS
+//  SUPPLIERS HAVE BEEN INFORMED OF THE POSSIBILITY THEREOF.-->
+
+package main
+
+// Define the libraries we need to make HTTP requests and print them
+import (
+	"fmt"
+	"net/http"
+	"io/ioutil"
+)
+
+func main() {
+
+	// Our apic-em controller base URL
+	controller := "https://sandboxapic.cisco.com"
+
+	// The REST endpoint that gets appended to the controller URL
+	get_devices_url := controller + "/api/v0/host/1/3"
+
+	// use the http.Get() method provided by the go 'net/http' library
+	resp, err := http.Get(get_devices_url)
+
+	// Error handling
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	// defer is used so that your application doesn't wait for the response to come back
+	defer resp.Body.Close()
+
+	// once the response comes back, read the response
+	body, err := ioutil.ReadAll(resp.Body)
+
+	// Print the body as a string
+	fmt.Printf("%s\n", string(body))
+}
