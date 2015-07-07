@@ -20,6 +20,6 @@ To install, use the following:
 	$ go run <filename>.go
 
 
-	## Credits and references
+## Credits and references
 
-	1. [DevNet Coding Skills Python](https://github.com/CiscoDevNet/coding-skills-sample-code/tree/master/coding102-REST-python)
+1. [DevNet Coding Skills Python](https://github.com/CiscoDevNet/coding-skills-sample-code/tree/master/coding102-REST-python)
