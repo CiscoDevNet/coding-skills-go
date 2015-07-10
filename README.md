@@ -12,6 +12,7 @@ You must have a working Go installation.  Instructions can be found [here](http:
 
 To install, use the following:
 
+	go get github.com/antonholmquist/jason
 	go get -u github.com/CiscoDevNet/coding-skills-go
 
 ### Usage
